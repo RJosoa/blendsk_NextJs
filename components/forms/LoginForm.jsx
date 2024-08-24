@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 export default function LoginForm() {
@@ -15,36 +17,37 @@ export default function LoginForm() {
     console.log(values);
   };
   return (
-    <div className="p-20">
-      <h3>Sign in to Blendsk</h3>
+    <form
+      className="flex flex-col gap-8 w-full"
+      method="POST"
+      onSubmit={handleSubmit}
+    >
+      <div className="flex flex-col">
+        <label htmlFor="username">Username or Email</label>
+        <input
+          type="text"
+          name="identifier"
+          placeholder="John Doe or Johndoe@example.xx"
+          onChange={(e) => handleChanges(e)}
+        />
+      </div>
 
-      <form
-        className="flex flex-col gap-4"
-        method="POST"
-        onSubmit={handleSubmit}
+      <div className="flex flex-col">
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="+6 characters"
+          onChange={(e) => handleChanges(e)}
+        />
+      </div>
+
+      <button
+        className="gap-4 p-4 rounded-full border bg-slate-950 text-slate-200 font-medium"
+        type="submit"
       >
-        <div className="flex flex-col">
-          <label htmlFor="username">username or email</label>
-          <input
-            type="text"
-            name="identifier"
-            placeholder="John Doe or Johndoe@example.xx"
-            onChange={(e) => handleChanges(e)}
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="******"
-            onChange={(e) => handleChanges(e)}
-          />
-        </div>
-
-        <button type="submit">submit</button>
-      </form>
-    </div>
+        Sign in
+      </button>
+    </form>
   );
 }

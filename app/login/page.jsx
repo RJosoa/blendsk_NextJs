@@ -1,14 +1,37 @@
-"use client";
-
+import GoogleProvider from "@/components/forms/GoogleProvider";
 import LoginForm from "@/components/forms/LoginForm";
-import React, { useState } from "react";
+import symbole from "@/public/logo/DarkSymbole.svg";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 export default function LoginPage() {
   return (
-    <div className="absolute">
-      <div className="flex bg-red-300 flex w-screen h-screen p-20">
-        <h1 className="w-1/2">Login.</h1>
-        <LoginForm />
+    <div className="absolute z-20">
+      <div className="flex bg-slate-50 flex w-screen h-screen p-20">
+        <div className="w-1/2">
+          <h1>Login.</h1>
+        </div>
+        <div className="absolute right-4 top-4 rounded-lg">
+          <Link href={"/"}>
+            <Image src={symbole} alt="blendsk symbole" width={45} />
+          </Link>
+        </div>
+
+        <div className="flex flex-col items-center justify-center w-[450px] gap-8 font-medium ">
+          <h3>Sign in to Blendsk</h3>
+          <GoogleProvider />
+          <LoginForm />
+        </div>
+        <div className="absolute bottom-8 left-8">
+          <p className="sign">
+            Not registered yet? Create your account and start <br />{" "}
+            personalizing now!,{" "}
+            <Link href={"/signup"} className="signLink">
+              sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
