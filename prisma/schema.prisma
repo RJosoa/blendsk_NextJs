@@ -1,41 +1,88 @@
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
- 
-generator client {
-  provider = "prisma-client-js"
-}
- 
+
+
 model User {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  username      String          @unique
-  email         String?         @unique
-  emailVerified DateTime?
-  image         String?
-  bio           String?
-  TermsOfService Boolean     @default(false)
-  accounts      Account[]
-  sessions      Session[]
-  posts         Post[]
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String    @id @default(cuid())
+  name            String?
+  username        String
+  email           String    @unique
+  emailVerified   DateTime?
+  bio             String?
+  termsOfService  Boolean   @default(false)
+  image           String?
+  accounts        Account[]
+  sessions        Session[]
+  posts           Post[]          
+  likes           Like[]    
+  favorites       Favorite[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
- 
+
+model Post {
+  postId       String      @id @default(cuid())
+  userId       String     
+  title        String
+  slug         String      @unique
+  summary      String?
+  poster       String?
+  categoryId   String?       
+  published    Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime?   @updatedAt
+  publishedAt  DateTime?
+
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category     Category?   @relation(fields: [categoryId], references: [id])
+  likes        Like[]     
+  favorites    Favorite[] 
+}
+
+model Favorite {
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [postId], onDelete: Cascade)
+
+  @@id([userId, postId])
+}
+
+model Like {
+  userId String
+  postId String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [postId], onDelete: Cascade)
+
+  @@id([userId, postId]) 
+}
+
+model Category {
+  id       String   @id @default(cuid())
+  title    String   @unique
+  slug     String   @unique
+  content  String?
+  posts    Post[]
+}
+
 model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String  @db.ObjectId
+  userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.String
-  access_token      String? @db.String
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.String
+  id_token          String?
   session_state     String?
  
   createdAt DateTime @default(now())
@@ -43,50 +90,25 @@ model Account {
  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
-  @@unique([provider, providerAccountId])
+  @@id([provider, providerAccountId])
 }
- 
+
 model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
-  userId       String   @db.ObjectId
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
 model VerificationToken {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String
   expires    DateTime
  
-  @@unique([identifier, token])
-}
- 
- model Post {
-  id           String       @id @default(auto()) @map("_id") @db.ObjectId
-  userId       String       @db.ObjectId
-  title        String
-  slug         String
-  summary      String?
-  poster       String?
-  categoryId   String?       @db.ObjectId
-  published    Boolean     @default(true)
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime?    @updatedAt
-  publishedAt  DateTime?
-
-  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  category     Category?    @relation(fields: [categoryId], references: [id])
+  @@id([identifier, token])
 }
 
-model Category {
-  id         String        @id @default(auto()) @map("_id") @db.ObjectId
-  title      String        @db.String @unique
-  content    String?       @db.String
-  posts      Post[]
 
-}
