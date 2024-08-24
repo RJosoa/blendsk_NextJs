@@ -4,11 +4,15 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 
 model User {
   id              String    @id @default(cuid())
   name            String?
-  username        String
+  username        String?
   email           String    @unique
   emailVerified   DateTime?
   bio             String?
