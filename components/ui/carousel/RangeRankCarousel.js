@@ -1,13 +1,12 @@
-
-"use client"
-import RangeRankCard from "../card/RangeRankCard";
+"use client";
+// import RangeRankCard from "../card/RangeRankCard";
 import useEmblaCarousel from "embla-carousel-react";
 
 export default function RangeRankCarousel() {
   const cardInfo = ["Essential", "Optimize", "Advance"];
   const [emblaRef] = useEmblaCarousel();
   return (
-     <div className="embla" ref={emblaRef}>
+    <div className="embla" ref={emblaRef}>
       <div className="embla__container">
         <div className="embla__slide">Slide 1</div>
         <div className="embla__slide">Slide 2</div>

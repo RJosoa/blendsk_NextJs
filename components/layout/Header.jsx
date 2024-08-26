@@ -1,15 +1,20 @@
 import Link from "next/link";
 import DarkLogo from "@/public/logo/LightmodLogo.svg";
 import Image from "next/image";
+import { auth } from "@/auth";
 
-export default function Header() {
-  const isLogin = false;
+export default async function Header() {
+  const session = await auth();
+  console.log("session");
+  console.log(session);
+
+  const isLogin = true;
   const username = "persona1";
 
   return (
     <header className="absolute w-screen flex justify-between items-center p-5">
       <Link href={"/"}>
-        <Image alt="DarkLogo" src={DarkLogo} width={195}/>
+        <Image alt="DarkLogo" src={DarkLogo} width={195} />
       </Link>
       <nav className="absolute left-1/2 -translate-x-1/2 flex gap-5">
         <Link href={"/explore"}>Explore</Link>

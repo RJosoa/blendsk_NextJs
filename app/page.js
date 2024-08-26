@@ -1,4 +1,4 @@
-import RangeRankCarousel from "@/components/carousel/RangeRankCarousel.js";
+import RangeRankCarousel from "@/components/ui/carousel/RangeRankCarousel.js";
 import MapCard from "@/components/mapCard/MapCard";
 
 export default function Home() {

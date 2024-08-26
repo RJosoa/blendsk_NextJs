@@ -1,12 +1,11 @@
-import GoogleProvider from "@/components/forms/GoogleProvider";
-import SignupForm from "@/components/forms/SignupForm";
+import GoogleProvider from "@/components/ui/forms/GoogleProvider";
+import SignupForm from "@/components/ui/forms/SignupForm";
 import symbole from "@/public/logo/DarkSymbole.svg";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 export default function SignupPage() {
-
   return (
     <div className="absolute z-20">
       <div className="flex bg-slate-50 flex w-screen h-screen p-20">

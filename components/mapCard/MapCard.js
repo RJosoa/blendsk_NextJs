@@ -1,4 +1,4 @@
-import PostCard from "../card/PostCard";
+import PostCard from "../ui/card/PostCard";
 
 export default function MapCard() {
   const cardInfo = [

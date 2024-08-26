@@ -1,5 +1,5 @@
-import GoogleProvider from "@/components/forms/GoogleProvider";
-import LoginForm from "@/components/forms/LoginForm";
+import GoogleProvider from "@/components/ui/forms/GoogleProvider";
+import LoginForm from "@/components/ui/forms/LoginForm";
 import symbole from "@/public/logo/DarkSymbole.svg";
 import Image from "next/image";
 import Link from "next/link";
