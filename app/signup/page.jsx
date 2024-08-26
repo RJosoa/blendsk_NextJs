@@ -1,4 +1,4 @@
-import GoogleProvider from "@/components/ui/forms/GoogleProvider";
+import GoogleProvider from "@/components/ui/buttons/GoogleProvider";
 import SignupForm from "@/components/ui/forms/SignupForm";
 import symbole from "@/public/logo/DarkSymbole.svg";
 import Image from "next/image";
