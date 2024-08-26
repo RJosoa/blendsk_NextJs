@@ -2,11 +2,11 @@ import Link from "next/link";
 import DarkLogo from "@/public/logo/LightmodLogo.svg";
 import Image from "next/image";
 import { auth } from "@/auth";
+import Signout from "../ui/buttons/Signout";
 
 export default async function Header() {
   const session = await auth();
-  console.log("session");
-  console.log(session);
+  console.log("Session:" ,session);
 
   const isLogin = true;
   const username = "persona1";
@@ -23,8 +23,8 @@ export default async function Header() {
       <div className="flex gap-5">
         {isLogin ? (
           <>
-            <button>Log out</button>
             <Link href={`/${username}`}>Profile</Link>
+            <Signout />
           </>
         ) : (
           <>
