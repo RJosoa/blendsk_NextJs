@@ -1,4 +1,4 @@
-import MapCard from "@/components/mapCard/MapCard";
+import MapCard from "@/components/ui/card/postMap/MapCard";
 import React from "react";
 
 import newsletter from "@/public/icons/mailBox.svg";
