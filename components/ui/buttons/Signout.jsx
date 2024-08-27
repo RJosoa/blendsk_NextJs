@@ -8,8 +8,14 @@ export default function Signout() {
         "use server";
         await signOut();
       }}
+      className="flex justify-center items-center"
     >
-      <button type="submit">Sign Out</button>
+      <button
+        type="submit"
+        className="border border-2 border-slate-950 py-2 px-4 rounded-full"
+      >
+        Sign Out
+      </button>
     </form>
   );
 }

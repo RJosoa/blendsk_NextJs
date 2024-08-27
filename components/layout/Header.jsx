@@ -3,13 +3,16 @@ import DarkLogo from "@/public/logo/LightmodLogo.svg";
 import Image from "next/image";
 import { auth } from "@/auth";
 import Signout from "../ui/buttons/Signout";
+import AvatarMenu from "../../components/ui/AvatarMenu";
 
 export default async function Header() {
   const session = await auth();
-  console.log("Session:" ,session);
+  console.log("Session:", session);
 
   const isLogin = true;
   const username = "persona1";
+
+
 
   return (
     <header className="absolute w-screen flex justify-between items-center p-5">
@@ -23,7 +26,9 @@ export default async function Header() {
       <div className="flex gap-5">
         {isLogin ? (
           <>
-            <Link href={`/${username}`}>Profile</Link>
+            <Link href={`/${username}`}>
+              <AvatarMenu />
+            </Link>
             <Signout />
           </>
         ) : (
