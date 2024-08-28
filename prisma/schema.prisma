@@ -13,8 +13,9 @@ model User {
   id              String    @id @default(cuid())
   name            String?
   username        String?
-  email           String    @unique
+  email           String?   @unique
   emailVerified   DateTime?
+  password        String?
   bio             String?
   termsOfService  Boolean   @default(false)
   image           String?
@@ -25,6 +26,7 @@ model User {
   favorites       Favorite[]
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  
 }
 
 model Post {
