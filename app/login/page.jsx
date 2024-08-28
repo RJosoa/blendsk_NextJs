@@ -8,7 +8,7 @@ import React from "react";
 export default function LoginPage() {
   return (
     <div className="absolute z-20">
-      <div className="flex bg-slate-50 flex w-screen h-screen p-20">
+      <div className="flex bg-slate-50 w-screen h-screen p-20">
         <div className="w-1/2">
           <h1>Login.</h1>
         </div>
@@ -27,8 +27,8 @@ export default function LoginPage() {
           <p className="sign">
             Not registered yet? Create your account and start <br />{" "}
             personalizing now!,{" "}
-            <Link href={"/signup"} className="signLink">
-              sign up
+            <Link href={"/register"} className="signLink">
+              Sign up .
             </Link>
           </p>
         </div>
