@@ -12,8 +12,6 @@ export default async function Header() {
   const isLogin = true;
   const username = "persona1";
 
-
-
   return (
     <header className="absolute w-screen flex justify-between items-center p-5">
       <Link href={"/"}>
@@ -34,7 +32,7 @@ export default async function Header() {
         ) : (
           <>
             <Link href={"/login"}>Log in</Link>
-            <Link href={"/signup"}>Sign up</Link>
+            <Link href={"/register"}>Sign up</Link>
           </>
         )}
       </div>
