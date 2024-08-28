@@ -1,6 +1,6 @@
 import { signIn } from "@/auth";
-import Image from "next/image";
-import google from "@/public/google.svg";
+
+import { FcGoogle } from "react-icons/fc";
 
 export default function GoogleProvider() {
   return (
@@ -15,7 +15,7 @@ export default function GoogleProvider() {
         className="flex w-full justify-center gap-4 p-4 rounded-full border border-slate-950/15"
         type="submit"
       >
-        <Image src={google} alt="google" width={24} />
+        <FcGoogle size={24} />
         <p>Signin with Google</p>
       </button>
     </form>
