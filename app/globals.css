@@ -49,5 +49,5 @@ input :focus {
 }
 
 .signLink {
-  @apply underline underline-offset-4
+  @apply underline underline-offset-8 decoration-wavy
 }
